@@ -4,7 +4,8 @@ import {
 
 import{
     Button,
-    Grid
+    Grid,
+    Box
 }from '@mui/material';
 
 import
@@ -23,15 +24,16 @@ function CoinView(){
         setSwitcher(!switcher);
     };
     return(
-        <Grid
-         container
-        >
+        <Box>
             <Grid 
-             item
-             xs={6}
-             justifyContent={'flex-end'}
+             container
+             justifyContent={'flex-start'}
             >
                 <Button
+                sx={{ 
+                    mt : 4,
+                    ml: 1
+                }}
                 variant='outlined'
                 onClick={handleViewChange}
                 >
@@ -39,15 +41,14 @@ function CoinView(){
                 </Button>
             </Grid>
 
-            <Grid item>
+            <Grid>
                 {switcher ?
                     <TabularView />
                     :
                     <GridView />
                 }
             </Grid>
-        </Grid>
-       
+        </Box>
     )
 }
 

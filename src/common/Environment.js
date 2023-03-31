@@ -3,7 +3,7 @@ export const Environments = {
         name: 'Local',
         uiHost: 'localhost',
         uiBase: '/',
-        apiHost: 'https://www.coingecko.com/',
+        apiHost: 'https://www.coingecko.com/api/v3/coins',
         apiBase: '',
         assetBase: 'http:localhost:3000/assets/',
     },
@@ -12,7 +12,7 @@ export const Environments = {
         name: 'Production',
         uiHost: '',
         uiBase: '/',
-        apiHost: 'https://www.coingecko.com/',
+        apiHost: 'https://www.coingecko.com/api/v3/coins',
         apiBase: '',
         assetBase: '',
     }

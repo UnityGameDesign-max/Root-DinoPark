@@ -8,14 +8,26 @@ import {
 } from '@mui/material/styles';
 
 import { 
-    Button,
-    CssBaseline, 
-    Switch 
+    AppBar,
+    CssBaseline,
+    Grid,
+    IconButton,
+    Toolbar
 } from '@mui/material';
 
 
-import DarkModeIcon from '@mui/icons-material/DarkMode'
-import LightModeIcon from '@mui/icons-material/LightMode'
+import {
+    palette
+} from 'common/theme/palette';
+
+import { 
+    DarkModeOutlined,
+    LightModeOutlined 
+} from '@mui/icons-material';
+
+import { 
+    typography
+} from 'common/theme/typography';
 
 function ThemeProvider({
     children
@@ -23,12 +35,11 @@ function ThemeProvider({
     const [theme, setTheme] = useState(false);
 
     const darkTheme = createTheme({
-        palette: {
-            mode: theme ? 'dark' : 'light'
-        }
+        palette: palette(theme),
+        typography: typography()
     })
 
-    const handleThemeChange = (event) => {
+    const handleThemeChange = () => {
         setTheme(
             !theme
         )
@@ -36,18 +47,30 @@ function ThemeProvider({
 
     return(
         <MuiThemeProvider 
-        theme={darkTheme}
+          theme={darkTheme}
         >
          <CssBaseline />
-
-         <Button
-          variant='outlined'
-          onClick={handleThemeChange}
-         >
-            { theme ? <LightModeIcon /> : <DarkModeIcon /> }
-         </Button>
         
-
+         <AppBar 
+          position='static'
+          
+         >
+            <Toolbar>
+              <Grid
+                container
+                justifyContent={'flex-end'}
+               >
+                <IconButton
+                    onClick={handleThemeChange}
+                >
+                    { theme ? 
+                        <LightModeOutlined /> :
+                        <DarkModeOutlined /> }
+                </IconButton>
+              </Grid>
+            </Toolbar>
+         </AppBar>
+        
           {children}
         </MuiThemeProvider>
     );
