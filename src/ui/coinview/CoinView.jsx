@@ -3,23 +3,51 @@ import {
 } from 'react';
 
 import{
-    Button
-}from '@mui/material'
+    Button,
+    Grid
+}from '@mui/material';
+
+import
+    TabularView
+from 'ui/coinview/components/TabularView';
+
+import
+    GridView
+from 'ui/coinview/components/GridView'
 
 function CoinView(){
 
     const [switcher, setSwitcher] = useState(false);
 
     const handleViewChange = () => {
-        setSwitcher(!switcher)
-    }
+        setSwitcher(!switcher);
+    };
     return(
-        <Button
-         variant='outlined'
-         onClick={handleViewChange}
+        <Grid
+         container
         >
-            {switcher ? 'Table View' : 'Grid View'}
-        </Button>
+            <Grid 
+             item
+             xs={6}
+             justifyContent={'flex-end'}
+            >
+                <Button
+                variant='outlined'
+                onClick={handleViewChange}
+                >
+                    {switcher ? 'Grid View' : 'Table View'}
+                </Button>
+            </Grid>
+
+            <Grid item>
+                {switcher ?
+                    <TabularView />
+                    :
+                    <GridView />
+                }
+            </Grid>
+        </Grid>
+       
     )
 }
 

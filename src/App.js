@@ -1,13 +1,18 @@
 
 import 
  CoinView 
-from './ui/coinview/CoinView';
+from 'ui/coinview/CoinView';
+
+import 
+  ThemeProvider 
+from 'common/theme/ThemeProvider';
 
 function App() {
+  
   return (
-    <div className="App">
+    <ThemeProvider>
       <CoinView />
-    </div>
+    </ThemeProvider>
   );
 }
 
