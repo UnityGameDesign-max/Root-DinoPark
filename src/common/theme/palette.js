@@ -1,24 +1,21 @@
-export const Colors = {
-    Citron: '#89AB31',
-    SapGreen: '#577620',
-    White: '#FFFFFF',
-    DavyGrey: '#555555',
-    Platinum: '#E7EBE7',
-}
+import { 
+    Colors 
+} from "common/constants";
+
 
 export const palette = (mode) =>{
  const themeBackground = mode ? 'dark' : 'light';
  return {
     mode: themeBackground,
     primary: {
-        main: Colors.Citron,
+        main: Colors.SapGreen,
         contrastText: Colors.White,
         dark: Colors.SapGreen
     },
     secondary: {
         main: Colors.DavyGrey,
         light: Colors.Platinum,
-        contrastText: Colors.White
+        contrastText: Colors.White,
     },
     shape: {
         borderRadius: 7

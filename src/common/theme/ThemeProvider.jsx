@@ -29,6 +29,10 @@ import {
     typography
 } from 'common/theme/typography';
 
+import { 
+    Colors 
+} from 'common/constants';
+
 function ThemeProvider({
     children
 }){
@@ -65,7 +69,8 @@ function ThemeProvider({
                 >
                     { theme ? 
                         <LightModeOutlined /> :
-                        <DarkModeOutlined /> }
+                        <DarkModeOutlined style={{color: `${Colors.White}`}} /> 
+                    }
                 </IconButton>
               </Grid>
             </Toolbar>

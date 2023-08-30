@@ -1,7 +1,7 @@
 
 import 
- CoinView 
-from 'ui/coinview/CoinView';
+ Grid 
+from 'ui/Grid';
 
 import 
   ThemeProvider 
@@ -11,7 +11,7 @@ function App() {
   
   return (
     <ThemeProvider>
-      <CoinView />
+      <Grid />
     </ThemeProvider>
   );
 }

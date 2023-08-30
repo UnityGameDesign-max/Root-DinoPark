@@ -3,18 +3,18 @@ export const Environments = {
         name: 'Local',
         uiHost: 'localhost',
         uiBase: '/',
-        apiHost: 'https://www.coingecko.com/api/v3/coins',
+        apiHost: 'https://dinoparks.herokuapp.com/nudls/feed',
         apiBase: '',
-        assetBase: 'http:localhost:3000/assets/',
+        assetBase: 'https://storage.googleapis.com/root-bank/dinoparks',
     },
 
     Prod: {
         name: 'Production',
         uiHost: '',
         uiBase: '/',
-        apiHost: 'https://www.coingecko.com/api/v3/coins',
+        apiHost: 'https://dinoparks.herokuapp.com/nudls/feed',
         apiBase: '',
-        assetBase: '',
+        assetBase: 'https://storage.googleapis.com/root-bank/dinoparks',
     }
 };
 
