@@ -1,13 +1,22 @@
 
 import { 
     Fragment,
+    useState 
 } from 'react';
 
 import { 
-    Box, Card, CardContent, Grid, Typography 
+    Box, Card, CardContent, Grid, Typography,
 } from '@mui/material';
 
-import Environment from 'common/Environment';
+import { Popover, Backdrop, Fade } from '@mui/material';
+
+import 
+    Environment 
+from 'common/Environment';
+
+import {
+    getAllActivityLogs
+} from 'providers/activityProvider';
 
 const gridCells = {
   width: '30px',
@@ -17,8 +26,21 @@ const gridCells = {
 
 function GridSystem(){
 
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleCellHover = (event, row, col) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
     const numOfRows = 16;
     const numOfCols = 26;
+
 
     const placeCells = () => {
         const cells = [];
@@ -27,7 +49,11 @@ function GridSystem(){
             const rowCells = [];
             for(let col=0; col< numOfCols; col++){
                 rowCells.push(
-                    <Grid key={col} item>
+                    <Grid 
+                        key={col}
+                        item
+                        onMouseEnter={(event) => handleCellHover(event, row, col)}
+                    >
                         <Box 
                             style={gridCells}
                         >
@@ -124,12 +150,31 @@ function GridSystem(){
                                 {renderXAxisLabels()}
                             </Grid>
                         </Grid>
-                        
-                        
+
+                        <Popover
+                        open={open}
+                        anchorEl={anchorEl}
+                        sx={{
+                            pointerEvents: 'none',
+                          }}
+                        onClose={handlePopoverClose}
+                        anchorOrigin={{
+                          vertical: 'center',
+                          horizontal: 'right',
+                        }}
+                        transformOrigin={{
+                          vertical: 'center',
+                          horizontal: 'left',
+                        }}
+                        disableRestoreFocus
+                      >
+                        <Typography sx={{ p: 2 }}>
+                          {open ? `${String.fromCharCode('A'.charCodeAt(0) + anchorEl.cellCol)}${anchorEl.cellRow + 1}` : null}
+                        </Typography>
+                      </Popover>
                     </CardContent>
                 </Card> 
             </Grid>
-            
         </Grid>
         </Fragment>
     )

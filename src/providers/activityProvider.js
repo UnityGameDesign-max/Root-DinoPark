@@ -3,22 +3,21 @@ import
 from 'common/Environment';
 
 
-export class ActivityProvider {
+const activityLogUri = `${Environment.apiHost}`;
 
-    static coinDataUri = `${Environment.apiHost}`;
+export const getAllActivityLogs = async () => {
 
-    static async getAllActivityLogs(){
-        try{
-            const coinRes = await fetch(`${CoinProvider.coinDataUri}/list`);
-            const result = await coinRes.json();
-            return result;
-        }catch(e){
-            return{
-                ok: false,
-                error: e,
-                result: null,
-                status: null
-            }
+    try{
+        const logRes = await fetch(`${activityLogUri}`);
+        const result = await logRes.json();
+        return result;
+    }catch(e){
+        return{
+            ok: false,
+            error: e,
+            result: null,
+            status: null
         }
     }
 }
+
