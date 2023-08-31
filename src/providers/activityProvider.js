@@ -15,8 +15,6 @@ export const getAllActivityLogs = async () => {
         return{
             ok: false,
             error: e,
-            result: null,
-            status: null
         }
     }
 }

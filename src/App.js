@@ -1,7 +1,7 @@
 
 import 
  Grid 
-from 'ui/Grid';
+from 'ui/gridview/Grid';
 
 import 
   ThemeProvider 

@@ -2,14 +2,14 @@ import {
     Colors 
 } from "common/constants";
 
-
 export const palette = (mode) =>{
  const themeBackground = mode ? 'dark' : 'light';
 
  return {
     mode: themeBackground,
+    typographyColor: Colors.Platinum,
     background:{
-        default: mode ? Colors.Dark : Colors.Blue
+        default: mode ? Colors.Dark : Colors.SkyBlue
     },
     primary: {
         main: Colors.SapGreen,

@@ -7,17 +7,13 @@ import {
 } from 'common/constants';
 
 import { 
-    gridCellStyle, wrenchStyle
+    gridCellStyle,
 } from 'common/styles/gridCellStyle';
 
 
 
 export const cellLocation = (row, col) => {
     return `${String.fromCharCode('A'.charCodeAt(0) + col)}${row + 1}`
-}
-
-const XAxisLabels = () => {
-    return `${String.fromCharCode('A'.charCodeAt(0))}`
 }
 
 const findActivityLogs = (logs, row, col) => {
@@ -31,27 +27,27 @@ const findActivityLogs = (logs, row, col) => {
     })
 
 }
+export const ImageWrench = (theme) => theme ? 
+<img width={15} alt='wrench-icon'  src={`${Environment.assetBase}/dino-parks-wrench.png`}/>:
+<img width={15} alt='wrench-icon' style={{color: Colors.White}} src={`${Environment.assetBase}/dino-parks-wrench.png`}/>
 
-export const assignCellContents = (logs, row, col) => {
+export const assignCellContents = (logs, row, col, theme) => {
     const activityLog = findActivityLogs(logs, row, col);
     let gridStyles = {...gridCellStyle};
     let cellContent = null;
-    let activity = null;
 
     if(activityLog){
         if(activityLog.kind === ActivityKind.MaintenancePerform){
-            cellContent = <img width={15} alt='wrench-icon' src={`${Environment.assetBase}/dino-parks-wrench.png`} />
-            activity = activityLog.kind;
+            gridStyles.Color = Colors.White;
+            cellContent = ImageWrench(theme)
+
         }else if (activityLog.kind === ActivityKind.DinoLocationUpdate){
             gridStyles.backgroundColor = Colors.SapGreen
             cellContent = '';
-            activity = activityLog.kind
-        }else{
-            activity = 'Unknown';
         }
     }
 
-    return {cellContent, gridStyles, activity}
+    return {cellContent, gridStyles }
 }
 
 

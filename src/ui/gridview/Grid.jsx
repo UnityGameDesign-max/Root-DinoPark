@@ -1,4 +1,3 @@
-
 import { 
     Fragment,
     useEffect,
@@ -8,7 +7,6 @@ import {
 import { 
     Box, Card, CardContent, Grid, Typography, useTheme,
 } from '@mui/material';
-
 
 import 
     Environment 
@@ -25,6 +23,18 @@ import {
 import 
     PopModal 
 from 'common/components/PopModal';
+
+import 
+    RenderYAxisLabels 
+from 'ui/components/RenderYAxis';
+
+import 
+    RenderXAxisLabel 
+from 'ui/components/RenderXAxis';
+
+import 
+    RenderGridCells 
+from 'ui/components/RenderGridCells'
 
 
 
@@ -45,87 +55,18 @@ function GridSystem(){
   };
 
   useEffect(() => {
-        async function getAllActivity(){
+        function fetchActivityLogs(){
             getAllActivityLogs().then((res) => {
                 setLogs(res)
-                console.log(res)
             })
         } 
-    getAllActivity()
+        fetchActivityLogs()
   },[])
-    
 
   const open = Boolean(anchorEl);
 
     const numOfRows = 16;
     const numOfCols = 26;
-
-
-    const placeCells = () => {
-        const cells = [];
-        
-        for (let row = 0; row < numOfRows; row++){
-            const rowCells = [];
-            for(let col=0; col< numOfCols; col++){
-                const cellContents = assignCellContents(logs, row, col);
-                
-                rowCells.push(
-                    <Grid 
-                        key={col}
-                        item
-                        onMouseEnter={(event) => handleCellHover(event, row, col)}
-                    >
-                        <Box style={cellContents.gridStyles}>
-                            {cellContents.cellContent}
-                        </Box>
-                        
-                    </Grid>
-                )
-            }
-
-            cells.push(
-                <Grid key={row} container >
-                    {rowCells}
-                </Grid>
-            )
-        }
-
-        return cells
-    }
-
-    const renderXAxisLabels = () => {
-        const labels = [<Grid key="spacer" item ></Grid>];
-
-        for (let col = 0; col < numOfCols; col++) {
-          labels.push(
-            <Grid key={col} item>
-              {String.fromCharCode('A'.charCodeAt(0) + col)}
-            </Grid>
-          );
-        }
-        return (
-          <Grid spacing={2.4} container>
-            {labels}
-          </Grid>
-        );
-    };
-
-    const renderYAxisLabels = () => {
-        const labels = [];
-        for (let row = 0; row < numOfRows; row++) {
-          labels.push(
-            <Grid key={row} item align="center">
-              {row + 1}
-            </Grid>
-          );
-        }
-        return (
-          <Grid container direction="column" spacing={0.8} justifyContent="space-between">
-            {labels}
-          </Grid>
-        );
-      };
-
     
     return(
         <Fragment>
@@ -158,9 +99,10 @@ function GridSystem(){
                         display={'flex'}
                         justifyContent={'space-between'}
                         alignItems={'center'}
+                        sx={{ mb: 2 }}
                         >
                             <Typography 
-                                variant='h3'
+                                variant='h4'
                                 style={{fontFamily: theme.typography.fontFamily}}
                             >
                                 Park Zones
@@ -168,6 +110,7 @@ function GridSystem(){
                             <Typography
                                 variant='h5'
                                 style={{fontFamily: theme.typography.fontFamily}}
+                                color={'typographyColor'}
                             >21 May 2018</Typography>
                         </Box>
                         
@@ -177,11 +120,18 @@ function GridSystem(){
                             onMouseLeave={handlePopoverClose} 
                         >
                             <Grid item>
-                                {renderYAxisLabels()}
+                                <RenderYAxisLabels numOfRows={numOfRows}/>
                             </Grid>
                             <Grid item>
-                                {placeCells()}
-                                {renderXAxisLabels()}
+                                <RenderGridCells 
+                                 numOfCols={numOfCols}
+                                 numOfRows={numOfRows}
+                                 placeCellContents={assignCellContents}
+                                 activityLogs={logs}
+                                 handleCellHover={handleCellHover}
+                                 theme={theme}
+                                />
+                                <RenderXAxisLabel numOfCols={numOfCols}/>
                             </Grid>
                         </Grid>
                     </CardContent>

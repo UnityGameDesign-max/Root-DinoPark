@@ -3,8 +3,9 @@ export const Colors = {
     White: '#FFFFFF',
     DavyGrey: '#555555',
     Platinum: '#E7EBE7',
-    Blue: '#E6EEFF',
-    Dark: '#121212'
+    SkyBlue: '#F5F7FA', 
+    Dark: '#121212',
+    DarkGrey: '#CCC'
 }
 
 export const ActivityKind = {

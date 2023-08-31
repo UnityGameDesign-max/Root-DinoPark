@@ -1,6 +1,7 @@
 import { 
     Popover, 
-    Typography 
+    Typography, 
+    useTheme
 } from "@mui/material";
 
 import { 
@@ -8,6 +9,7 @@ import {
 } from "common/helpers/filterZones";
 
 function PopModal({ open, anchorEl, hoverCell, handlePopoverClose, activity }) {
+    const theme = useTheme();
   return (
     <Popover
       open={open}
@@ -27,8 +29,13 @@ function PopModal({ open, anchorEl, hoverCell, handlePopoverClose, activity }) {
         horizontal: "left",
       }}
     >
-      <Typography sx={{ p: 2 }}>
-        <Typography>
+      <Typography 
+       sx={{ p: 2 }}
+       style={{ fontFamily: theme.typography.fontFamily }}
+       >
+        <Typography
+         style={{ fontFamily: theme.typography.fontFamily }}
+        >
             Location: { open && hoverCell.row !== null && hoverCell.col !== null 
                 ? cellLocation(hoverCell.row, hoverCell.col): ''}
         </Typography>
