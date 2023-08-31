@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# This is a DinoPark log System Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![image description](https://storage.googleapis.com/root-bank/dinoparks/dinoparks-logo.png)
 
-## Available Scripts
+## Demo Link:
 
-In the project directory, you can run:
+Access the dinoPark Application here: 
 
-### `npm start`
+## How to set up and run the project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Download or clone the repository 
+* run `npm install` to install necessary dependencies of the project
+* run `npm start` to run the project locally on your machine
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How I Approached the problem
 
-### `npm test`
+* I adopted a certain architecture for my solution. I went with a certain file structure that will ensure that continuous development and possibly deployment is possible should I decide I want to continue and add more features to the solution.
+I solve the solution using a JavaScript framework and a CSS framework.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* I would be interested in adding more features to the application I enjoyed solving a grid system and using dynamic data from an external API to determine if a grid is safe of under maintenance. I would add a feature to show additional information once hovered over like a status/activity of a dinosaur.
 
-### `npm run build`
+* I learned generating grids dynamically and using an API to manipulate some other grids and learned documenting styles that can be used for documentation to be easy for someone to run the project locally
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* I think the assessment can be improved by explaining clearly which zones or grids are needed to be manipulated from an API it can be a list stating clearly that if 'dino_added' manipulate grid to be green and give a specific location as well.
