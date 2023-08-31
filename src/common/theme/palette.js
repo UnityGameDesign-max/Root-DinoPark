@@ -5,8 +5,12 @@ import {
 
 export const palette = (mode) =>{
  const themeBackground = mode ? 'dark' : 'light';
+
  return {
     mode: themeBackground,
+    background:{
+        default: mode ? Colors.Dark : Colors.Blue
+    },
     primary: {
         main: Colors.SapGreen,
         contrastText: Colors.White,

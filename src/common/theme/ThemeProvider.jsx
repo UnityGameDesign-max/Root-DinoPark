@@ -40,7 +40,7 @@ function ThemeProvider({
 
     const darkTheme = createTheme({
         palette: palette(theme),
-        typography: typography()
+        typography: typography(),
     })
 
     const handleThemeChange = () => {

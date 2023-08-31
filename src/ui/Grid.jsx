@@ -1,14 +1,14 @@
 
 import { 
     Fragment,
+    useEffect,
     useState 
 } from 'react';
 
 import { 
-    Box, Card, CardContent, Grid, Typography,
+    Box, Card, CardContent, Grid, Typography, useTheme,
 } from '@mui/material';
 
-import { Popover, Backdrop, Fade } from '@mui/material';
 
 import 
     Environment 
@@ -18,23 +18,42 @@ import {
     getAllActivityLogs
 } from 'providers/activityProvider';
 
-const gridCells = {
-  width: '30px',
-  height: '30px',
-  border: '1px solid #ccc',
-}
+import { 
+    assignCellContents 
+} from 'common/helpers/filterZones';
+
+import 
+    PopModal 
+from 'common/components/PopModal';
+
+
 
 function GridSystem(){
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const [hoveredCell, setHoveredCell] = useState({ row: null, col: null });
+  const [logs, setLogs] = useState([]);
+  const theme = useTheme();
 
   const handleCellHover = (event, row, col) => {
     setAnchorEl(event.currentTarget);
+    setHoveredCell({ row, col });
   };
 
   const handlePopoverClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+        async function getAllActivity(){
+            getAllActivityLogs().then((res) => {
+                setLogs(res)
+                console.log(res)
+            })
+        } 
+    getAllActivity()
+  },[])
+    
 
   const open = Boolean(anchorEl);
 
@@ -44,20 +63,22 @@ function GridSystem(){
 
     const placeCells = () => {
         const cells = [];
-
+        
         for (let row = 0; row < numOfRows; row++){
             const rowCells = [];
             for(let col=0; col< numOfCols; col++){
+                const cellContents = assignCellContents(logs, row, col);
+                
                 rowCells.push(
                     <Grid 
                         key={col}
                         item
                         onMouseEnter={(event) => handleCellHover(event, row, col)}
                     >
-                        <Box 
-                            style={gridCells}
-                        >
+                        <Box style={cellContents.gridStyles}>
+                            {cellContents.cellContent}
                         </Box>
+                        
                     </Grid>
                 )
             }
@@ -124,6 +145,7 @@ function GridSystem(){
             <Grid 
                 item 
                 justifyContent={'center'}
+                
             >
                 <Card
                     style={{
@@ -135,13 +157,25 @@ function GridSystem(){
                         <Box
                         display={'flex'}
                         justifyContent={'space-between'}
+                        alignItems={'center'}
                         >
-                            <Typography>Park Zones</Typography>
-                            <Typography>21 May 2018</Typography>
+                            <Typography 
+                                variant='h3'
+                                style={{fontFamily: theme.typography.fontFamily}}
+                            >
+                                Park Zones
+                            </Typography>
+                            <Typography
+                                variant='h5'
+                                style={{fontFamily: theme.typography.fontFamily}}
+                            >21 May 2018</Typography>
                         </Box>
                         
-                        <Grid container display={'flex'}>
-
+                        <Grid 
+                            container 
+                            display={'flex'}
+                            onMouseLeave={handlePopoverClose} 
+                        >
                             <Grid item>
                                 {renderYAxisLabels()}
                             </Grid>
@@ -150,33 +184,18 @@ function GridSystem(){
                                 {renderXAxisLabels()}
                             </Grid>
                         </Grid>
-
-                        <Popover
-                        open={open}
-                        anchorEl={anchorEl}
-                        sx={{
-                            pointerEvents: 'none',
-                          }}
-                        onClose={handlePopoverClose}
-                        anchorOrigin={{
-                          vertical: 'center',
-                          horizontal: 'right',
-                        }}
-                        transformOrigin={{
-                          vertical: 'center',
-                          horizontal: 'left',
-                        }}
-                        disableRestoreFocus
-                      >
-                        <Typography sx={{ p: 2 }}>
-                          {open ? `${String.fromCharCode('A'.charCodeAt(0) + anchorEl.cellCol)}${anchorEl.cellRow + 1}` : null}
-                        </Typography>
-                      </Popover>
                     </CardContent>
                 </Card> 
             </Grid>
         </Grid>
-        </Fragment>
+
+       <PopModal 
+        open={open}
+        anchorEl={anchorEl}
+        hoverCell={hoveredCell}
+        handlePopoverClose={handlePopoverClose}
+       />
+      </Fragment>
     )
 }
 
