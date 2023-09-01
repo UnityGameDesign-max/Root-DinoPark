@@ -7,7 +7,7 @@ export const palette = (mode) =>{
 
  return {
     mode: themeBackground,
-    typographyColor: Colors.Platinum,
+    typographyColor: Colors.DavyGrey,
     background:{
         default: mode ? Colors.Dark : Colors.SkyBlue
     },

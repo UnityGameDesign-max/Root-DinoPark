@@ -5,7 +5,7 @@ import {
 } from 'react';
 
 import { 
-    Box, Card, CardContent, Grid, Typography, useTheme,
+    Box, Card, CardContent, Grid, Typography
 } from '@mui/material';
 
 import 
@@ -17,7 +17,7 @@ import {
 } from 'providers/activityProvider';
 
 import { 
-    assignCellContents 
+    assignCellContents, getTodayDate 
 } from 'common/helpers/filterZones';
 
 import 
@@ -37,13 +37,12 @@ import
 from 'ui/components/RenderGridCells'
 
 
-
 function GridSystem(){
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [hoveredCell, setHoveredCell] = useState({ row: null, col: null });
   const [logs, setLogs] = useState([]);
-  const theme = useTheme();
+
 
   const handleCellHover = (event, row, col) => {
     setAnchorEl(event.currentTarget);
@@ -60,7 +59,7 @@ function GridSystem(){
                 setLogs(res)
             })
         } 
-        fetchActivityLogs()
+        fetchActivityLogs();
   },[])
 
   const open = Boolean(anchorEl);
@@ -111,7 +110,9 @@ function GridSystem(){
                                 variant='h5'
                                 style={{fontFamily: theme.typography.fontFamily}}
                                 color={'typographyColor'}
-                            >21 May 2018</Typography>
+                            >
+                            {getTodayDate()}
+                            </Typography>
                         </Box>
                         
                         <Grid 
@@ -129,7 +130,6 @@ function GridSystem(){
                                  placeCellContents={assignCellContents}
                                  activityLogs={logs}
                                  handleCellHover={handleCellHover}
-                                 theme={theme}
                                 />
                                 <RenderXAxisLabel numOfCols={numOfCols}/>
                             </Grid>

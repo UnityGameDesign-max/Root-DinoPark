@@ -1,16 +1,16 @@
 import {
     Box,
-    Grid
+    Grid,
 } from '@mui/material'
 
 
-const RenderGridCells = ({numOfRows, numOfCols, placeCellContents, activityLogs, handleCellHover, theme}) => {
+const RenderGridCells = ({numOfRows, numOfCols, placeCellContents, activityLogs, handleCellHover}) => {
     const gridCells = [];
 
     for(let row=0; row < numOfRows; row++){
         const rowGridCells = [];
         for(let col=0; col<numOfCols; col++){
-            const cellContents = placeCellContents(activityLogs, row, col, theme);
+            const cellContents = placeCellContents(activityLogs, row, col);
 
             rowGridCells.push(
                 <Grid
