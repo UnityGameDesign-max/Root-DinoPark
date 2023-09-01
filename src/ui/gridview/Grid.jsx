@@ -5,7 +5,7 @@ import {
 } from 'react';
 
 import { 
-    Box, Card, CardContent, Grid, Typography
+    Box, Card, CardContent, Grid, Typography, useTheme,
 } from '@mui/material';
 
 import 
@@ -26,11 +26,11 @@ from 'common/components/PopModal';
 
 import 
     RenderYAxisLabels 
-from 'ui/components/RenderYAxis';
+from 'ui/gridview/components/RenderYAxis';
 
 import 
     RenderXAxisLabel 
-from 'ui/components/RenderXAxis';
+from 'ui/gridview/components/RenderXAxis';
 
 import 
     RenderGridCells 
@@ -42,6 +42,7 @@ function GridSystem(){
   const [anchorEl, setAnchorEl] = useState(null);
   const [hoveredCell, setHoveredCell] = useState({ row: null, col: null });
   const [logs, setLogs] = useState([]);
+  const theme = useTheme();
 
 
   const handleCellHover = (event, row, col) => {
