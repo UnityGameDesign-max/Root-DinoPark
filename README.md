@@ -2,7 +2,7 @@
 
 ![image description](https://storage.googleapis.com/root-bank/dinoparks/dinoparks-logo.png)
 
-## Demo Link:
+## Demo Link: https://dinopark-809b7.web.app
 
 Access the dinoPark Application here: 
 

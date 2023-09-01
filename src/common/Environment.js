@@ -10,7 +10,7 @@ export const Environments = {
 
     Prod: {
         name: 'Production',
-        uiHost: '',
+        uiHost: 'https://dinopark-809b7.web.app/',
         uiBase: '/',
         apiHost: 'https://dinoparks.herokuapp.com/nudls/feed',
         apiBase: '',
